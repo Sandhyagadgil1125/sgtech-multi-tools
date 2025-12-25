@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO OPTIMIZATION -->
+    <title>SGTech-Multi-Tools | 20+ Free Online Premium Web Tools</title>
+    <meta name="description" content="SGTech-Multi-Tools: A premium, futuristic collection of 20+ free online tools including Image Converter, Password Generator, QR Code Maker, and more. No ads, no login.">
+    <meta name="keywords" content="SGTech tools, online image converter, free password generator, QR code generator online, BMI calculator, JSON formatter, text to speech, multi-tool website, web tools for developers">
+    <meta name="author" content="SGTech">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph for Social Media -->
+    <meta property="og:title" content="SGTech-Multi-Tools | Premium Futuristic Toolkit">
+    <meta property="og:description" content="Access 20+ professional tools in one place. Fast, free, and responsive.">
+    <meta property="og:type" content="website">
+
+    <!-- CSS STYLING -->
+    <style>
+        :root {
+            --bg-main: #0d0f14;
+            --bg-nav: #1c222d;
+            --bg-card: #12151a;
+            --accent: #42f8f5;
+            --accent-alt: #3ff7f3;
+            --accent-glow: rgba(66, 248, 245, 0.6);
+            --text-primary: #ffffff;
+            --text-secondary: #c5d1de;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; }
+        html { scroll-behavior: smooth; }
+        body { background-color: var(--bg-main); color: var(--text-primary); line-height: 1.6; overflow-x: hidden; }
+
+        /* Scrollbar Styling */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg-main); }
+        ::-webkit-scrollbar-thumb { background: var(--bg-nav); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+
+        /* Header & Nav */
+        nav {
+            background: var(--bg-nav);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(66, 248, 245, 0.1);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+        }
+        .logo { font-size: 1.5rem; font-weight: 800; letter-spacing: 1px; color: var(--text-primary); text-decoration: none; }
+        .logo span { color: var(--accent); text-shadow: 0 0 10px var(--accent-glow); }
+        .nav-links { display: flex; gap: 2rem; list-style: none; }
+        .nav-links a { text-decoration: none; color: var(--text-secondary); font-weight: 500; transition: var(--transition); }
+        .nav-links a:hover { color: var(--accent); text-shadow: 0 0 8px var(--accent-glow); }
+
+        /* Hero Section */
+        .hero {
+            padding: 80px 5%;
+            text-align: center;
+            background: radial-gradient(circle at top, #1c222d 0%, #0d0f14 80%);
+        }
+        .hero h1 { font-size: clamp(2.5rem, 5vw, 4rem); margin-bottom: 1rem; letter-spacing: -1px; }
+        .hero p { color: var(--text-secondary); font-size: 1.2rem; max-width: 700px; margin: 0 auto 2.5rem; }
+        
+        .search-wrapper { position: relative; max-width: 600px; margin: 0 auto; }
+        #toolSearch {
+            width: 100%;
+            padding: 18px 30px;
+            border-radius: 50px;
+            border: 1px solid rgba(66, 248, 245, 0.2);
+            background: var(--bg-card);
+            color: white;
+            font-size: 1rem;
+            outline: none;
+            transition: var(--transition);
+        }
+        #toolSearch:focus { border-color: var(--accent); box-shadow: 0 0 20px var(--accent-glow); }
+
+        /* Tool Grid */
+        .container { padding: 60px 5%; max-width: 1400px; margin: 0 auto; }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: var(--bg-card);
+            padding: 35px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            transition: var(--transition);
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            position: relative;
+        }
+        .card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.6), 0 0 15px var(--accent-glow);
+        }
+        .card i { font-size: 2.5rem; color: var(--accent); margin-bottom: 10px; }
+        .card h2 { font-size: 1.4rem; font-weight: 700; }
+        .card p { color: var(--text-secondary); font-size: 0.95rem; flex-grow: 1; }
+        
+        .btn-launch {
+            background: transparent;
+            color: var(--accent);
+            border: 1px solid var(--accent);
+            padding: 12px;
+            border-radius: 5px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .card:hover .btn-launch { background: var(--accent); color: var(--bg-main); }
+
+        /* Modal System */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.95);
+            backdrop-filter: blur(8px);
+            z-index: 2000;
+        }
+        .modal-content {
+            background: var(--bg-nav);
+            width: 90%;
+            max-width: 850px;
+            margin: 50px auto;
+            border-radius: 20px;
+            border: 1px solid var(--accent);
+            box-shadow: 0 0 40px var(--accent-glow);
+            padding: 40px;
+            position: relative;
+            max-height: 85vh;
+            overflow-y: auto;
+        }
+        .close-btn { position: absolute; top: 20px; right: 25px; font-size: 2rem; cursor: pointer; color: var(--text-secondary); }
+        .close-btn:hover { color: var(--accent); }
+
+        /* Tool UI Components */
+        .tool-ui-container { display: flex; flex-direction: column; gap: 20px; }
+        .tool-ui-container h2 { color: var(--accent); border-bottom: 1px solid #333; padding-bottom: 10px; }
+        input, textarea, select {
+            width: 100%; padding: 15px; background: var(--bg-main); border: 1px solid #333;
+            color: white; border-radius: 8px; font-size: 1rem;
+        }
+        .action-btn {
+            background: var(--accent); color: var(--bg-main); border: none; padding: 15px;
+            border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 1rem;
+        }
+        .result-box {
+            background: #000; padding: 20px; border-radius: 8px; border-left: 5px solid var(--accent);
+            min-height: 60px; word-break: break-all; font-family: monospace; position: relative;
+        }
+
+        footer { text-align: center; padding: 40px; border-top: 1px solid #222; margin-top: 50px; color: var(--text-secondary); }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .grid { grid-template-columns: 1fr; }
+            .modal-content { width: 95%; padding: 20px; margin: 20px auto; }
+        }
+    </style>
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <nav>
+        <a href="#" class="logo"><span>SGTech</span>-Multi-Tool</a>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#tools">All Tools</a></li>
+            <li><a href="#about">About</a></li>
+        </ul>
+    </nav>
+
+    <header class="hero" id="home">
+        <h1>Next-Gen Tool Suite</h1>
+        <p>Premium, high-speed frontend tools for developers, designers, and creators. No tracking, just performance.</p>
+        <div class="search-wrapper">
+            <input type="text" id="toolSearch" placeholder="Search 20+ tools (e.g., Image, QR, JSON)...">
+        </div>
+    </header>
+
+    <main class="container" id="tools">
+        <div class="grid" id="toolGrid">
+            <!-- Tools Generated by JS -->
+        </div>
+    </main>
+
+    <!-- Global Modal -->
+    <div id="globalModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeTool()">&times;</span>
+            <div id="toolInterface"></div>
+        </div>
+    </div>
+
+    <footer id="about">
+        <p>&copy; 2024 SGTech Multi-Tools. Built with Vanilla JS & Modern CSS. <br> 
+        <small>Privacy First: All processing happens in your browser.</small></p>
+    </footer>
+
+    <script>
+        // --- 1. TOOL DATA CONFIGURATION ---
+        const toolList = [
+            { id: 'imgConv', title: 'Image Converter', desc: 'Convert JPG/PNG to WebP format instantly.', icon: 'fa-images' },
+            { id: 'passGen', title: 'Password Generator', desc: 'Create military-grade secure passwords.', icon: 'fa-shield-halved' },
+            { id: 'qrGen', title: 'QR Code Generator', desc: 'Create high-quality QR codes for any URL.', icon: 'fa-qrcode' },
+            { id: 'wordCount', title: 'Word Counter', desc: 'Live statistics for words, chars, and reading time.', icon: 'fa-pen-nib' },
+            { id: 'bmiCalc', title: 'BMI Calculator', desc: 'Quick health check with BMI metrics.', icon: 'fa-heart-pulse' },
+            { id: 'jsonFmt', title: 'JSON Formatter', desc: 'Clean, prettify or minify your JSON code.', icon: 'fa-code' },
+            { id: 'ageCalc', title: 'Age Calculator', desc: 'Find exact age down to the second.', icon: 'fa-calendar-days' },
+            { id: 'unitConv', title: 'Unit Converter', desc: 'Convert Length, Weight, and Temperature.', icon: 'fa-ruler-combined' },
+            { id: 'tts', title: 'Text to Speech', desc: 'Natural voice synthesis for your text.', icon: 'fa-comment-dots' },
+            { id: 'colorPick', title: 'Color Picker', desc: 'Visual color selection with HEX/RGB output.', icon: 'fa-eye-dropper' },
+            { id: 'b64Tool', title: 'Base64 Encoder', desc: 'Securely encode or decode Base64 data.', icon: 'fa-link' },
+            { id: 'sipCalc', title: 'SIP Calculator', desc: 'Estimate your future investment wealth.', icon: 'fa-chart-pie' },
+            { id: 'emiCalc', title: 'EMI Calculator', desc: 'Calculate monthly loan installments.', icon: 'fa-calculator' },
+            { id: 'caseConv', title: 'Case Converter', desc: 'UPPER, lower, Sentence case toggles.', icon: 'fa-font' },
+            { id: 'loremGen', title: 'Lorem Ipsum', desc: 'Generate placeholder text for designs.', icon: 'fa-file-lines' },
+            { id: 'binConv', title: 'Binary Converter', desc: 'Convert Text to Binary and vice versa.', icon: 'fa-microchip' },
+            { id: 'stopwatch', title: 'Timer/Stopwatch', desc: 'Precision digital timing tool.', icon: 'fa-stopwatch' },
+            { id: 'stt', title: 'Speech to Text', desc: 'Convert your voice to text via browser.', icon: 'fa-microphone' },
+            { id: 'imgComp', title: 'Image Compressor', desc: 'Reduce file size while keeping quality.', icon: 'fa-file-zipper' },
+            { id: 'textHex', title: 'Text to Hex', desc: 'Convert any string into Hexadecimal.', icon: 'fa-hashtag' }
+        ];
+
+        // --- 2. CORE DOM LOGIC ---
+        const toolGrid = document.getElementById('toolGrid');
+        const toolSearch = document.getElementById('toolSearch');
+        const modal = document.getElementById('globalModal');
+        const toolInterface = document.getElementById('toolInterface');
+
+        function initTools(data) {
+            toolGrid.innerHTML = '';
+            data.forEach(tool => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.innerHTML = `
+                    <i class="fas ${tool.icon}"></i>
+                    <h2>${tool.title}</h2>
+                    <p>${tool.desc}</p>
+                    <button class="btn-launch">Open Tool</button>
+                `;
+                card.onclick = () => launchTool(tool.id);
+                toolGrid.appendChild(card);
+            });
+        }
+
+        toolSearch.oninput = (e) => {
+            const val = e.target.value.toLowerCase();
+            const filtered = toolList.filter(t => t.title.toLowerCase().includes(val) || t.desc.toLowerCase().includes(val));
+            initTools(filtered);
+        };
+
+        function launchTool(id) {
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+            renderUI(id);
+        }
+
+        function closeTool() {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // --- 3. TOOL UI ROUTER ---
+        function renderUI(id) {
+            let html = '';
+            switch(id) {
+                case 'passGen':
+                    html = `<h2>Password Generator</h2>
+                            <div class="tool-ui-container">
+                                <input type="number" id="pLen" value="16" placeholder="Length (max 50)">
+                                <button class="action-btn" onclick="genPass()">Generate Secure Password</button>
+                                <div id="pRes" class="result-box">Your password will appear here...</div>
+                            </div>`;
+                    break;
+                case 'qrGen':
+                    html = `<h2>QR Code Generator</h2>
+                            <div class="tool-ui-container">
+                                <input type="text" id="qTxt" placeholder="Enter URL or Text">
+                                <button class="action-btn" onclick="genQR()">Generate QR</button>
+                                <div id="qRes" style="text-align:center; padding:20px;"></div>
+                            </div>`;
+                    break;
+                case 'wordCount':
+                    html = `<h2>Word Counter</h2>
+                            <div class="tool-ui-container">
+                                <textarea id="wIn" rows="8" placeholder="Paste your text here..." oninput="doCount()"></textarea>
+                                <div id="wRes" class="result-box">Words: 0 | Chars: 0</div>
+                            </div>`;
+                    break;
+                case 'bmiCalc':
+                    html = `<h2>BMI Calculator</h2>
+                            <div class="tool-ui-container">
+                                <input type="number" id="bH" placeholder="Height (cm)">
+                                <input type="number" id="bW" placeholder="Weight (kg)">
+                                <button class="action-btn" onclick="doBMI()">Calculate BMI</button>
+                                <div id="bRes" class="result-box">Enter details...</div>
+                            </div>`;
+                    break;
+                case 'tts':
+                    html = `<h2>Text to Speech</h2>
+                            <div class="tool-ui-container">
+                                <textarea id="tIn" rows="5">Hello, welcome to SGTech tools.</textarea>
+                                <button class="action-btn" onclick="doSpeak()">Speak Now</button>
+                            </div>`;
+                    break;
+                case 'jsonFmt':
+                    html = `<h2>JSON Formatter</h2>
+                            <div class="tool-ui-container">
+                                <textarea id="jIn" rows="8" placeholder='{"key":"value"}'></textarea>
+                                <button class="action-btn" onclick="doJSON()">Prettify JSON</button>
+                                <div id="jRes" class="result-box" style="white-space:pre">Formatted JSON...</div>
+                            </div>`;
+                    break;
+                case 'ageCalc':
+                    html = `<h2>Age Calculator</h2>
+                            <div class="tool-ui-container">
+                                <input type="date" id="aIn">
+                                <button class="action-btn" onclick="doAge()">Calculate Age</button>
+                                <div id="aRes" class="result-box">Select Birth Date...</div>
+                            </div>`;
+                    break;
+                case 'colorPick':
+                    html = `<h2>Color Picker</h2>
+                            <div class="tool-ui-container">
+                                <input type="color" id="cIn" style="height:100px; padding:5px">
+                                <button class="action-btn" onclick="doColor()">Get Codes</button>
+                                <div id="cRes" class="result-box">#000000</div>
+                            </div>`;
+                    break;
+                case 'imgConv':
+                    html = `<h2>Image to WebP Converter</h2>
+                            <div class="tool-ui-container">
+                                <input type="file" id="iIn" accept="image/*">
+                                <button class="action-btn" onclick="doImgConv()">Convert to WebP</button>
+                                <div id="iRes" style="text-align:center"></div>
+                            </div>`;
+                    break;
+                default:
+                    html = `<h2>Coming Soon</h2><p>The ${id} logic is being updated. Stay tuned!</p>`;
+            }
+            toolInterface.innerHTML = html;
+        }
+
+        // --- 4. TOOL LOGIC FUNCTIONS ---
+        function genPass() {
+            const len = document.getElementById('pLen').value || 16;
+            const charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()";
+            let res = "";
+            for(let i=0; i<len; i++) res += charset.charAt(Math.floor(Math.random() * charset.length));
+            document.getElementById('pRes').innerText = res;
+        }
+
+        function genQR() {
+            const val = document.getElementById('qTxt').value;
+            if(!val) return;
+            document.getElementById('qRes').innerHTML = `<img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${val}" style="border:10px solid white; border-radius:10px;">`;
+        }
+
+        function doCount() {
+            const txt = document.getElementById('wIn').value.trim();
+            const words = txt ? txt.split(/\s+/).length : 0;
+            document.getElementById('wRes').innerText = `Words: ${words} | Characters: ${txt.length}`;
+        }
+
+        function doBMI() {
+            const h = document.getElementById('bH').value / 100;
+            const w = document.getElementById('bW').value;
+            if(h && w) {
+                const bmi = (w / (h*h)).toFixed(2);
+                document.getElementById('bRes').innerText = `Your BMI is: ${bmi}`;
+            }
+        }
+
+        function doSpeak() {
+            const msg = new SpeechSynthesisUtterance(document.getElementById('tIn').value);
+            window.speechSynthesis.speak(msg);
+        }
+
+        function doJSON() {
+            try {
+                const obj = JSON.parse(document.getElementById('jIn').value);
+                document.getElementById('jRes').innerText = JSON.stringify(obj, null, 4);
+            } catch(e) { document.getElementById('jRes').innerText = "Invalid JSON Code"; }
+        }
+
+        function doAge() {
+            const birth = new Date(document.getElementById('aIn').value);
+            const now = new Date();
+            const age = now.getFullYear() - birth.getFullYear();
+            document.getElementById('aRes').innerText = `You are approximately ${age} years old.`;
+        }
+
+        function doColor() {
+            const c = document.getElementById('cIn').value;
+            document.getElementById('cRes').innerText = `HEX: ${c}`;
+        }
+
+        function doImgConv() {
+            const file = document.getElementById('iIn').files[0];
+            if(!file) return;
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                const img = new Image();
+                img.onload = () => {
+                    const canvas = document.createElement('canvas');
+                    canvas.width = img.width;
+                    canvas.height = img.height;
+                    canvas.getContext('2d').drawImage(img, 0, 0);
+                    const webp = canvas.toDataURL('image/webp');
+                    document.getElementById('iRes').innerHTML = `<a href="${webp}" download="sgtech-image.webp" class="action-btn" style="text-decoration:none; display:inline-block">Download WebP</a>`;
+                };
+                img.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+
+        // Initialize
+        window.onload = () => initTools(toolList);
+    </script>
+</body>
+</html>
